@@ -7,13 +7,7 @@ C:\Users\diazl\source\repos\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\ob
 C:\Users\diazl\source\repos\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.CoreCompileInputs.cache
 C:\Users\diazl\source\repos\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.exe
 C:\Users\diazl\source\repos\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.pdb
-F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\bin\Debug\PPAI-Red-Sismica-3K5-G10.exe.config
-F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\bin\Debug\PPAI-Red-Sismica-3K5-G10.exe
-F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\bin\Debug\PPAI-Red-Sismica-3K5-G10.pdb
 F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.AssemblyReference.cache
-F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.exe.config
 F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI_Red_Sismica_3K5_G10.Properties.Resources.resources
 F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.GenerateResource.cache
 F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.CoreCompileInputs.cache
-F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.exe
-F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.pdb

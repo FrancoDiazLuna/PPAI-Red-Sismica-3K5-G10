@@ -46,14 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapaPresentacion\Forms\PantallaPrincipal.cs">
+    <Compile Include="Entidades\ApreciacionTipo.cs" />
+    <Compile Include="Entidades\CambioEstado.cs" />
+    <Compile Include="Entidades\Empleado.cs" />
+    <Compile Include="Entidades\EstacionSismologica.cs" />
+    <Compile Include="Entidades\Estado.cs" />
+    <Compile Include="Entidades\Interfaces\IMonitorCRS.cs" />
+    <Compile Include="Entidades\Interfaces\INotificableMail.cs" />
+    <Compile Include="Entidades\Interfaces\IPantallaCerrarOrden.cs" />
+    <Compile Include="Entidades\MotivoFueraDeServicio.cs" />
+    <Compile Include="Entidades\MotivoTipo.cs" />
+    <Compile Include="Entidades\OrdenDeInspeccion.cs" />
+    <Compile Include="Entidades\Rol.cs" />
+    <Compile Include="Entidades\Sismografo.cs" />
+    <Compile Include="Entidades\TareaAsignada.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="LogicaNegocio\GestorCerrarOrden.cs" />
+    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioEmpleados.cs" />
+    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioOrdenes.cs" />
+    <Compile Include="Presentacion\PantallaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CapaPresentacion\Forms\PantallaPrincipal.Designer.cs">
+    <Compile Include="Presentacion\PantallaPrincipal.Designer.cs">
       <DependentUpon>PantallaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades\Formateadores.cs" />
+    <Compile Include="Utilidades\MonitorSimulado.cs" />
+    <Compile Include="Utilidades\SimuladorMail.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,10 +97,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CapaDatos\" />
-    <Folder Include="CapaNegocio\" />
-    <Folder Include="CapaPresentacion\Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

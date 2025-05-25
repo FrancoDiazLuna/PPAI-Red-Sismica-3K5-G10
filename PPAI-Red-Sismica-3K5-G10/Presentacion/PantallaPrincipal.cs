@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PPAI_Red_Sismica_3K5_G10
+namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 {
     public partial class PantallaPrincipal : Form
     {
@@ -29,10 +22,22 @@ namespace PPAI_Red_Sismica_3K5_G10
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-
+            PantallaOrdenesFinalizadas pOrdenesFinalizadas = new PantallaOrdenesFinalizadas();
+            pOrdenesFinalizadas.ShowDialog();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            PantallaOrdenesRealizadas pOrdenesRealizadas = new PantallaOrdenesRealizadas();
+            pOrdenesRealizadas.ShowDialog();
+        }
+
+        private void PantallaPrincipal_Load(object sender, EventArgs e)
         {
 
         }

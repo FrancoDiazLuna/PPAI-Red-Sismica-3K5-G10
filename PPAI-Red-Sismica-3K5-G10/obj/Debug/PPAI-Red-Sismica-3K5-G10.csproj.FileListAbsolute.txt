@@ -11,3 +11,16 @@ F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPA
 F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI_Red_Sismica_3K5_G10.Properties.Resources.resources
 F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.GenerateResource.cache
 F:\Proyectos\DSI\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.CoreCompileInputs.cache
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.AssemblyReference.cache
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI_Red_Sismica_3K5_G10.Presentacion.PantallaMotivos.resources
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI_Red_Sismica_3K5_G10.Presentacion.PantallaOrdenesFinalizadas.resources
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI_Red_Sismica_3K5_G10.Presentacion.PantallaOrdenesRealizadas.resources
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI_Red_Sismica_3K5_G10.Properties.Resources.resources
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.GenerateResource.cache
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.csproj.CoreCompileInputs.cache
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\bin\Debug\PPAI-Red-Sismica-3K5-G10.exe.config
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\bin\Debug\PPAI-Red-Sismica-3K5-G10.exe
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\bin\Debug\PPAI-Red-Sismica-3K5-G10.pdb
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.exe
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI-Red-Sismica-3K5-G10.pdb
+C:\Users\facub\Desktop\Guada\DSI\PPAI\TP\PPAI-Red-Sismica-3K5-G10\PPAI-Red-Sismica-3K5-G10\obj\Debug\PPAI_Red_Sismica_3K5_G10.Presentacion.PantallaPrincipal.resources

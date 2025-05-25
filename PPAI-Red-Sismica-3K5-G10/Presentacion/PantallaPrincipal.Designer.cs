@@ -1,4 +1,4 @@
-﻿namespace PPAI_Red_Sismica_3K5_G10
+﻿namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 {
     partial class PantallaPrincipal
     {
@@ -38,8 +38,9 @@
             // 
             this.btnCerrar.BackColor = System.Drawing.Color.SteelBlue;
             this.btnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCerrar.Font = new System.Drawing.Font("Noto Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrar.Location = new System.Drawing.Point(992, 571);
             this.btnCerrar.Name = "btnCerrar";
@@ -47,14 +48,16 @@
             this.btnCerrar.TabIndex = 0;
             this.btnCerrar.Text = "Cerrar Orden De Inspección";
             this.btnCerrar.UseVisualStyleBackColor = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnVer
             // 
             this.btnVer.BackColor = System.Drawing.Color.SteelBlue;
             this.btnVer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnVer.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.btnVer.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnVer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVer.Font = new System.Drawing.Font("Noto Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnVer.Location = new System.Drawing.Point(769, 571);
             this.btnVer.Name = "btnVer";
             this.btnVer.Size = new System.Drawing.Size(180, 79);
@@ -67,11 +70,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Noto Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.label1.Location = new System.Drawing.Point(187, 271);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(832, 68);
+            this.label1.Size = new System.Drawing.Size(777, 54);
             this.label1.TabIndex = 2;
             this.label1.Text = "Centro De Control De Red Sísmica";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -93,6 +96,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PantallaPrincipal";
             this.Text = "Centro De Red Sísmica";
+            this.Load += new System.EventHandler(this.PantallaPrincipal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -19,7 +19,8 @@ namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            PantallaMotivos pMotivos = new PantallaMotivos();
+            pMotivos.ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -28,11 +29,6 @@ namespace PPAI_Red_Sismica_3K5_G10.Presentacion
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

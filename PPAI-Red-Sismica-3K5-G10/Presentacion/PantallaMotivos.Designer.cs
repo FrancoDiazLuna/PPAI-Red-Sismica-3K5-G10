@@ -44,10 +44,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Noto Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(46, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 30);
+            this.label1.Size = new System.Drawing.Size(157, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Observaciones";
             // 
@@ -65,10 +65,13 @@
             // btnActualizar
             // 
             this.btnActualizar.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnActualizar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnActualizar.Location = new System.Drawing.Point(807, 229);
+            this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnActualizar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnActualizar.Location = new System.Drawing.Point(785, 228);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(95, 33);
+            this.btnActualizar.Size = new System.Drawing.Size(117, 33);
             this.btnActualizar.TabIndex = 2;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = false;
@@ -77,10 +80,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Noto Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(46, 275);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 30);
+            this.label2.Size = new System.Drawing.Size(87, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Motivos";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -107,12 +110,14 @@
             this.checkBox.HeaderText = "";
             this.checkBox.MinimumWidth = 6;
             this.checkBox.Name = "checkBox";
+            this.checkBox.Width = 125;
             // 
             // tipoMotivo
             // 
             this.tipoMotivo.HeaderText = "Tipo Motivo ";
             this.tipoMotivo.MinimumWidth = 6;
             this.tipoMotivo.Name = "tipoMotivo";
+            this.tipoMotivo.ReadOnly = true;
             this.tipoMotivo.Width = 400;
             // 
             // comentario
@@ -125,10 +130,13 @@
             // btnConfirmar
             // 
             this.btnConfirmar.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnConfirmar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnConfirmar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnConfirmar.Location = new System.Drawing.Point(951, 604);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(103, 36);
+            this.btnConfirmar.Size = new System.Drawing.Size(142, 34);
             this.btnConfirmar.TabIndex = 5;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = false;
@@ -162,9 +170,9 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoMotivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn comentario;
-        private System.Windows.Forms.Button btnConfirmar;
     }
 }

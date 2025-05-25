@@ -26,6 +26,5 @@ namespace PPAI_Red_Sismica_3K5_G10.Entidades
         public string getCodigoEstacion() => codigoEstacion;
         public string getEstaciones() => "estaciones";
         public string getNombre() => nombre;
-        public Sismografo getSismografoActual() => sismografos?.FindLast(s => s.esActual());
     }
 }

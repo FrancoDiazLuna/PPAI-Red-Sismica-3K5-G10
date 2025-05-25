@@ -24,7 +24,8 @@ namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            //btnActualizar
+            //string cuadroTextoObs = textBox1.Text; 
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -39,7 +40,11 @@ namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            MessageBox.Show("¿Desea cerrar la orden de inspección?", 
+                            "Confirmar", 
+                            MessageBoxButtons.YesNo, 
+                            MessageBoxIcon.Warning );
+           
         }
     }
 }

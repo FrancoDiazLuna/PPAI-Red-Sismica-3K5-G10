@@ -37,16 +37,17 @@
             this.fechaCierre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horaCierre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoSismografo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Noto Sans", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(380, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(447, 57);
+            this.label1.Size = new System.Drawing.Size(430, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ordenes De Inspección";
             // 
@@ -120,17 +121,34 @@
             this.estadoSismografo.ReadOnly = true;
             this.estadoSismografo.Width = 150;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnVolver.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVolver.Location = new System.Drawing.Point(1025, 606);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(103, 32);
+            this.btnVolver.TabIndex = 2;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // PantallaOrdenesFinalizadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1182, 673);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PantallaOrdenesFinalizadas";
             this.Text = "Ordenes Finalizadas";
+            this.Load += new System.EventHandler(this.PantallaOrdenesFinalizadas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -147,5 +165,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaCierre;
         private System.Windows.Forms.DataGridViewTextBoxColumn horaCierre;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoSismografo;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

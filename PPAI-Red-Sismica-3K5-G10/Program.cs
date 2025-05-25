@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PPAI_Red_Sismica_3K5_G10
+namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 {
     internal static class Program
     {

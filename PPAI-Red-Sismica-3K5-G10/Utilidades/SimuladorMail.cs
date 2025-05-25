@@ -12,7 +12,7 @@ namespace PPAI_Red_Sismica_3K5_G10.Utilidades
         public void EnviarMail()
         {
             Console.WriteLine($"[SIMULADOR MAIL] Enviando mail a {Dominio} con texto:\n{Texto}");
-            // Simulación: también podrías usar MessageBox.Show o loguear
+            // Simulación: también podemos usar MessageBox.Show o loguear
         }
     }
 }

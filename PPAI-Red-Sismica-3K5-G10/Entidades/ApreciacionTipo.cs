@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace PPAI_Red_Sismica_3K5_G10.Entidades
 {
     public class ApreciacionTipo
     {
-        private string color { get; set; }
-        private string leyenda { get; set; }
+        private string color;
+        private string leyenda;
 
-        public string getLeyenda() => leyenda;
+        // Constructor
+        public ApreciacionTipo(string color, string leyenda)
+        {
+            this.color = color;
+            this.leyenda = leyenda;
+        }
+
+        // Getters y Setters
         public string getColor() => color;
+        public void setColor(string nuevoColor) => color = nuevoColor;
+        public string getLeyenda() => leyenda;
+        public void setLeyenda(string nuevaLeyenda) => leyenda = nuevaLeyenda;
     }
 }

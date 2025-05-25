@@ -63,7 +63,30 @@
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="LogicaNegocio\GestorCerrarOrden.cs" />
     <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioEmpleados.cs" />
+    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioEstacionesSismologicas.cs" />
+    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioEstados.cs" />
+    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioMotivosTipo.cs" />
     <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioOrdenes.cs" />
+    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioOrdenesDeInspeccion.cs" />
+    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioUsuarios.cs" />
+    <Compile Include="Presentacion\PantallaMotivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PantallaMotivos.Designer.cs">
+      <DependentUpon>PantallaMotivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PantallaOrdenesFinalizadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PantallaOrdenesFinalizadas.Designer.cs">
+      <DependentUpon>PantallaOrdenesFinalizadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PantallaOrdenesRealizadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PantallaOrdenesRealizadas.Designer.cs">
+      <DependentUpon>PantallaOrdenesRealizadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\PantallaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +98,18 @@
     <Compile Include="Utilidades\Formateadores.cs" />
     <Compile Include="Utilidades\MonitorSimulado.cs" />
     <Compile Include="Utilidades\SimuladorMail.cs" />
+    <EmbeddedResource Include="Presentacion\PantallaMotivos.resx">
+      <DependentUpon>PantallaMotivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PantallaOrdenesFinalizadas.resx">
+      <DependentUpon>PantallaOrdenesFinalizadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PantallaOrdenesRealizadas.resx">
+      <DependentUpon>PantallaOrdenesRealizadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PantallaPrincipal.resx">
+      <DependentUpon>PantallaPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

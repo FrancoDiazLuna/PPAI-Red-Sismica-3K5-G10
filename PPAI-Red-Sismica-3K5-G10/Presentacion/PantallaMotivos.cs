@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PPAI_Red_Sismica_3K5_G10
+namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 {
-    public partial class PantallaPrincipal : Form
+    public partial class PantallaMotivos : Form
     {
-        public PantallaPrincipal()
+        public PantallaMotivos()
         {
             InitializeComponent();
         }
@@ -22,17 +22,22 @@ namespace PPAI_Red_Sismica_3K5_G10
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnVer_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

@@ -1,40 +1,68 @@
-﻿using PPAI_Red_Sismica_3K5_G10.CapaNegocio;
-using PPAI_Red_Sismica_3K5_G10.LogicaNegocio.RepositoriosSimulados;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using PPAI_Red_Sismica_3K5_G10.Entidades;
 
 namespace PPAI_Red_Sismica_3K5_G10.LogicaNegocio
 {
-    private readonly RepositorioOrdenes repo;
-
-    public GestorCerrarOrden()
+    public class GestorCerrarOrden
     {
-        repo = new RepositorioOrdenes();
-    }
+        private Empleado riLogueado;
+        private OrdenDeInspeccion ordenDeInspeccionEstRealizada;
+        private string observacionCierre;
+        private string motivo;
+        private string comentario;
+        private DateTime fechaHoraActual;
+        private Estado estadoCerrada;
+        private Estado estadoFueraDeServicio;
+        private MotivoTipo tipoMotivo;
+        private string identificadorMonitor;
+        private List<EstacionSismologica> estaciones;
+        private List<string> mailRespReparacion;
 
-    public void InicializarSimulacion()
-    {
-        Empleado emp = new Empleado { Nombre = "Juan", Apellido = "Pérez", EsResponsableDeReparacion = true };
-
-        OrdenDeInspeccion orden = new OrdenDeInspeccion
+        public void tomarOrdenDeInspeccion(OrdenDeInspeccion orden)
         {
-            EmpleadoAsignado = emp,
-            EstadoActual = new Estado { Nombre = "Abierta" },
-            FechaCreacion = DateTime.Now
-        };
+            ordenDeInspeccionEstRealizada = orden;
+            fechaHoraActual = DateTime.Now;
+        }
 
-        repo.Agregar(orden);
-    }
+        public Empleado buscarEmpleado()
+        {
+            // Lógica para buscar el empleado logueado
+            return riLogueado;
+        }
 
-    public List<OrdenDeInspeccion> ObtenerOrdenes()
-    {
-        return repo.ObtenerTodas();
-    }
+        public void buscarOrdenes()
+        {
+        }
 
-    public void CerrarOrden(OrdenDeInspeccion orden)
-    {
-        orden.EstadoActual = new Estado { Nombre = "Cerrada" };
-        orden.FechaCierre = DateTime.Now;
-        repo.Actualizar(orden);
+        public void tomarMotivoFueraDeServicio(string motivoSeleccionado)
+        {
+            motivo = motivoSeleccionado;
+        }
+
+        public void tomarComentario(string comentarioIngresado)
+        {
+            comentario = comentarioIngresado;
+        }
+
+        public void tomarConfirmacionCerrarOrdenDeInspeccion()
+        {
+            if (ordenDeInspeccionEstRealizada != null)
+            {
+                ordenDeInspeccionEstRealizada.cerrarOrdenDeInspeccion(DateTime.Now);
+                // Lógica adicional para notificar, actualizar estados, etc.
+            }
+        }
+
+        public void iniciarMail()
+        {
+            // Lógica para iniciar el envío de mail
+        }
+
+        public void tomarMail()
+        {
+            // Lógica para tomar el mail de reparación
+        }
+
     }
 }

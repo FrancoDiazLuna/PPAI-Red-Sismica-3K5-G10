@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using PPAI_Red_Sismica_3K5_G10.Entidades;
 
@@ -33,15 +34,14 @@ namespace PPAI_Red_Sismica_3K5_G10.Presentacion
             ordenesDeInspeccion = (List<OrdenDeInspeccion>)sender;  
             foreach(var ordenes in ordenesDeInspeccion )
             {
-                // Lo dejo comentado para que no de error al compilar
-                //dataGridView1.Rows.Add(
-                //                       ordenes.getEstacionSismologica().getSismografo().getIdentificadorSismografo(),
-                //                       ordenes.getNroOrden(),
-                //                       ordenes.getEstacionSismologica().getNombre(),
-                //                       ordenes.getFechaHoraCierre()?.ToString("dd/MM/yyyy") ?? "",
-                //                       ordenes.getFechaHoraCierre()?.ToString("HH:mm") ?? "",
-                //                       ordenes.getEstacionSismologica().getSismografo().getEstadoActual().getNombreEstado()
-                //                       );
+                dataGridView1.Rows.Add(
+                                       ordenes.getEstacionSismologica().getSismografos().First().getIdentificadorSismografo(),
+                                       ordenes.getNroOrden(),
+                                       ordenes.getEstacionSismologica().getNombre(),
+                                       ordenes.getFechaHoraCierre()?.ToString("dd/MM/yyyy") ?? "",
+                                       ordenes.getFechaHoraCierre()?.ToString("HH:mm") ?? "",
+                                       ordenes.getEstacionSismologica().getSismografos().First().getEstadoActual().getNombreEstado()
+                                       );
             }
         }
     }

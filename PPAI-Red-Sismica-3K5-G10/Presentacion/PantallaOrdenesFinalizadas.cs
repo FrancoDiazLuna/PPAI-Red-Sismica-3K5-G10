@@ -24,8 +24,7 @@ namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            PantallaPrincipal pPrincipal = new PantallaPrincipal();
-            pPrincipal.ShowDialog();
+            this.Close();
         }
 
         private void PantallaOrdenesFinalizadas_Load(object sender, EventArgs e)

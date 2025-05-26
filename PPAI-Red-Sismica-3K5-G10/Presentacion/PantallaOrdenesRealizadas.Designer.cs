@@ -37,6 +37,7 @@
             this.numeroOrden = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estacionSismologica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaFinalizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,12 +128,27 @@
             this.fechaFinalizacion.ReadOnly = true;
             this.fechaFinalizacion.Width = 200;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVolver.Location = new System.Drawing.Point(864, 614);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(131, 34);
+            this.btnVolver.TabIndex = 3;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // PantallaOrdenesRealizadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1182, 673);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSiguientee);
             this.Controls.Add(this.label1);
@@ -155,5 +171,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroOrden;
         private System.Windows.Forms.DataGridViewTextBoxColumn estacionSismologica;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaFinalizacion;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

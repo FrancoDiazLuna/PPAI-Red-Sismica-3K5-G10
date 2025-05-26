@@ -34,7 +34,7 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.checkBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tipoMotivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comentario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnConfirmar = new System.Windows.Forms.Button();
@@ -60,7 +60,6 @@
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(851, 140);
             this.txtObservacion.TabIndex = 1;
-            this.txtObservacion.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnActualizar
             // 
@@ -86,7 +85,6 @@
             this.label2.Size = new System.Drawing.Size(87, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Motivos";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // dataGridView1
             // 
@@ -94,7 +92,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.SteelBlue;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.checkBox,
+            this.seleccionado,
             this.tipoMotivo,
             this.comentario});
             this.dataGridView1.Location = new System.Drawing.Point(51, 308);
@@ -104,13 +102,14 @@
             this.dataGridView1.Size = new System.Drawing.Size(1003, 267);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
-            // checkBox
+            // seleccionado
             // 
-            this.checkBox.HeaderText = "";
-            this.checkBox.MinimumWidth = 6;
-            this.checkBox.Name = "checkBox";
-            this.checkBox.Width = 125;
+            this.seleccionado.HeaderText = "";
+            this.seleccionado.MinimumWidth = 6;
+            this.seleccionado.Name = "seleccionado";
+            this.seleccionado.Width = 125;
             // 
             // tipoMotivo
             // 
@@ -131,6 +130,7 @@
             // 
             this.btnConfirmar.BackColor = System.Drawing.Color.SteelBlue;
             this.btnConfirmar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnConfirmar.Enabled = false;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnConfirmar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -171,7 +171,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn checkBox;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn seleccionado;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoMotivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn comentario;
     }

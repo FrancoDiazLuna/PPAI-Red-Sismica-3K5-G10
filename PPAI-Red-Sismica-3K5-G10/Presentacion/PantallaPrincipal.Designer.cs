@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaPrincipal));
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnVer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,9 +41,10 @@
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCerrar.Location = new System.Drawing.Point(992, 571);
+            this.btnCerrar.Location = new System.Drawing.Point(744, 464);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(165, 79);
+            this.btnCerrar.Size = new System.Drawing.Size(124, 64);
             this.btnCerrar.TabIndex = 0;
             this.btnCerrar.Text = "Cerrar Orden De Inspección";
             this.btnCerrar.UseVisualStyleBackColor = false;
@@ -58,9 +58,10 @@
             this.btnVer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVer.Location = new System.Drawing.Point(769, 571);
+            this.btnVer.Location = new System.Drawing.Point(577, 464);
+            this.btnVer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnVer.Name = "btnVer";
-            this.btnVer.Size = new System.Drawing.Size(180, 79);
+            this.btnVer.Size = new System.Drawing.Size(135, 64);
             this.btnVer.TabIndex = 1;
             this.btnVer.Text = "Ver Ordenes De Inspección";
             this.btnVer.UseVisualStyleBackColor = false;
@@ -72,31 +73,32 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(187, 271);
+            this.label1.Location = new System.Drawing.Point(140, 220);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(777, 54);
+            this.label1.Size = new System.Drawing.Size(638, 44);
             this.label1.TabIndex = 2;
             this.label1.Text = "Centro De Control De Red Sísmica";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // PantallaPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::PPAI_Red_Sismica_3K5_G10.Properties.Resources.VIEW_Terremotos_Mundiales;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1182, 673);
+            this.ClientSize = new System.Drawing.Size(886, 547);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnVer);
             this.Controls.Add(this.btnCerrar);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PantallaPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Centro De Red Sísmica";
-            this.Load += new System.EventHandler(this.PantallaPrincipal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

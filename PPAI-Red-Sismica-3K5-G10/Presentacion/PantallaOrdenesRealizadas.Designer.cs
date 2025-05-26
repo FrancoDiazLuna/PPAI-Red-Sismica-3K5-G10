@@ -45,9 +45,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(361, 9);
+            this.label1.Location = new System.Drawing.Point(271, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(451, 46);
+            this.label1.Size = new System.Drawing.Size(365, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ordenes de Inspección";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -58,9 +59,10 @@
             this.btnSiguientee.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSiguientee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnSiguientee.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSiguientee.Location = new System.Drawing.Point(1020, 614);
+            this.btnSiguientee.Location = new System.Drawing.Point(765, 499);
+            this.btnSiguientee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSiguientee.Name = "btnSiguientee";
-            this.btnSiguientee.Size = new System.Drawing.Size(131, 34);
+            this.btnSiguientee.Size = new System.Drawing.Size(98, 28);
             this.btnSiguientee.TabIndex = 1;
             this.btnSiguientee.Text = "Siguiente";
             this.btnSiguientee.UseVisualStyleBackColor = false;
@@ -78,12 +80,13 @@
             this.numeroOrden,
             this.estacionSismologica,
             this.fechaFinalizacion});
-            this.dataGridView1.Location = new System.Drawing.Point(149, 71);
+            this.dataGridView1.Location = new System.Drawing.Point(112, 58);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(929, 506);
+            this.dataGridView1.Size = new System.Drawing.Size(697, 411);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -134,9 +137,10 @@
             this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVolver.Location = new System.Drawing.Point(864, 614);
+            this.btnVolver.Location = new System.Drawing.Point(648, 499);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(131, 34);
+            this.btnVolver.Size = new System.Drawing.Size(98, 28);
             this.btnVolver.TabIndex = 3;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -144,16 +148,18 @@
             // 
             // PantallaOrdenesRealizadas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1182, 673);
+            this.ClientSize = new System.Drawing.Size(886, 547);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSiguientee);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PantallaOrdenesRealizadas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ordenes de Inspeccion";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

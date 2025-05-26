@@ -66,13 +66,9 @@
     <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioEstacionesSismologicas.cs" />
     <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioEstados.cs" />
     <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioMotivosTipo.cs" />
-    <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioOrdenes.cs" />
-<<<<<<< HEAD
     <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioOrdenesDeInspeccion.cs" />
     <Compile Include="LogicaNegocio\RepositoriosSimulados\RepositorioUsuarios.cs" />
-=======
     <Compile Include="PantallaPrincipal.cs" />
->>>>>>> origin/front
     <Compile Include="Presentacion\PantallaMotivos.cs">
       <SubType>Form</SubType>
     </Compile>

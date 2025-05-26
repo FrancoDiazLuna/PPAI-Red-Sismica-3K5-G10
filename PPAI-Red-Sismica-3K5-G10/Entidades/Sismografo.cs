@@ -12,6 +12,7 @@ namespace PPAI_Red_Sismica_3K5_G10.Entidades
         private List<CambioEstado> cambiosEstado;
         private List<(MotivoTipo motivo, string comentario)> motivosFueraDeServicio = new List<(MotivoTipo, string)>();
         private List<EstacionSismologica> estaciones = new List<EstacionSismologica>();
+        private int nroOrden;
 
         // Constructor
         public Sismografo(DateTime fechaAdquisicion, int identificadorSismografo, int nroSerie, Estado estadoActual)
@@ -36,6 +37,7 @@ namespace PPAI_Red_Sismica_3K5_G10.Entidades
         public void setCambiosEstado(List<CambioEstado> nuevosCambios) => cambiosEstado = nuevosCambios;
         public List<(MotivoTipo motivo, string comentario)> getMotivosFueraDeServicio() => motivosFueraDeServicio;
         public void setMotivosFueraDeServicio(List<(MotivoTipo motivo, string comentario)> nuevosMotivos) => motivosFueraDeServicio = nuevosMotivos;
+
 
         // Métodos
         public void crearCambioEstado(CambioEstado cambio)

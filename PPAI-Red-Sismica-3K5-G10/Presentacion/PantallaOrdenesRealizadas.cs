@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PPAI_Red_Sismica_3K5_G10.Entidades;
 
 namespace PPAI_Red_Sismica_3K5_G10.Presentacion
 {
@@ -38,6 +39,21 @@ namespace PPAI_Red_Sismica_3K5_G10.Presentacion
         {
             //btnVolver
             this.Close();   
+        }
+
+        private void cargarDataGridView(object sender)
+        {
+            List<OrdenDeInspeccion> ordenesDeInspeccion = new List<OrdenDeInspeccion>();
+            ordenesDeInspeccion = (List<OrdenDeInspeccion>)sender;  
+            foreach(var ordenes in ordenesDeInspeccion )
+            {
+                dataGridView1.Rows.Add(
+                                       ordenes.getEstacionSismologica().getSismografo().getIdentificadorSismografo(),
+                                       ordenes.getNroOrden(),
+                                       ordenes.getEstacionSismologica().getNombre(),
+                                       ordenes.getFechaHoraFinalizacion()                                                                                
+                                       );
+            }   
         }
     }
 }

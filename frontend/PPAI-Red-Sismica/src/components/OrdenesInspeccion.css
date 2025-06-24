@@ -1,0 +1,95 @@
+/* Fondo moderno con degradado */
+.ordenes-container {
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  min-height: 100vh;
+  padding: 50px 30px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Título */
+.ordenes-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f2f46;
+  margin-bottom: 40px;
+}
+
+/* Contenedor de tabla */
+.tabla-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* Tabla */
+.ordenes-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.ordenes-tabla thead {
+  background-color: #003566;
+  color: #ffffff;
+}
+
+.ordenes-tabla th {
+  padding: 16px 14px;
+  text-align: left;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ordenes-tabla td {
+  padding: 14px 14px;
+  font-size: 15px;
+  color: #333;
+  border-bottom: 1px solid #e1e7ee;
+}
+
+.ordenes-tabla tbody tr:hover {
+  background-color: #f0f6ff;
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive: oculta encabezado en móviles */
+@media screen and (max-width: 768px) {
+  .ordenes-tabla thead {
+    display: none;
+  }
+
+  .ordenes-tabla, .ordenes-tabla tbody, .ordenes-tabla tr, .ordenes-tabla td {
+    display: block;
+    width: 100%;
+  }
+
+  .ordenes-tabla tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.04);
+    padding: 12px;
+  }
+
+  .ordenes-tabla td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .ordenes-tabla td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #6c757d;
+  }
+}

@@ -1,42 +1,64 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #A9C4D4;
+  color: rgb(12, 9, 9);
+}
+
+.titulo-central {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Opcional: para cortar con "..." si se desborda */
+  font-size: 2rem; /* Ajustá según tu diseño */
+}
+
+.globe-section {
+  position: relative;
+  width: 100%;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.logo-overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button-section {
+  margin-bottom: 50px;
+  display: flex;
+  gap: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.primary-button {
+  padding: 15px 25px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.card {
-  padding: 2em;
+.secondary-button {
+  padding: 16px 32px;         /* Más espacio interno */
+  font-size: 14px;            /* Texto más grande */
+  min-width: 240px;           /* Botón más ancho */
+  border: none;
+  border-radius: 5px;         /* Opcional: bordes más suaves */
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.read-the-docs {
-  color: #888;
+.primary-button {
+  background-color: #1e88e5;
+  color: white;
+}
+
+.secondary-button {
+  background-color: #e53935;
+  color: white;
 }

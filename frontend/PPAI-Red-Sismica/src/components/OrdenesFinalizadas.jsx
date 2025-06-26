@@ -1,58 +1,83 @@
-import React from 'react';
-import './OrdenesInspeccion.css';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './OrdenesFinalizadas.css';
 
-const OrdenesInspeccion = () => {
-  // Datos simulados por ahora
-  const datos = [
-    {
-      id: '001',
-      orden: 'ORD-1234',
-      estacion: 'Estación Norte',
-      fecha: '2025-06-23',
-      hora: '14:30',
-      estado: 'Activo',
-    },
-    {
-      id: '002',
-      orden: 'ORD-5678',
-      estacion: 'Estación Sur',
-      fecha: '2025-06-22',
-      hora: '11:15',
-      estado: 'Fuera de servicio',
-    },
-  ];
+const OrdenesFinalizadas = () => {
+  const [ordenes, setOrdenes] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const guardadas = JSON.parse(localStorage.getItem("ordenesConfirmadas")) || [];
+    setOrdenes(guardadas);
+  }, []);
+
+  const eliminarOrden = (index) => {
+    const confirmacion = window.confirm("¿Estás seguro que deseas eliminar esta orden?");
+    if (!confirmacion) return;
+
+    const nuevasOrdenes = [...ordenes];
+    nuevasOrdenes.splice(index, 1);
+    setOrdenes(nuevasOrdenes);
+    localStorage.setItem("ordenesConfirmadas", JSON.stringify(nuevasOrdenes));
+  };
 
   return (
     <div className="ordenes-container">
-      <h1 className="ordenes-title">Órdenes De Inspección</h1>
+      <h1 className="ordenes-title">Órdenes Finalizadas</h1>
       <div className="tabla-wrapper">
         <table className="ordenes-tabla">
           <thead>
             <tr>
-              <th>ID Sismógrafo</th>
-              <th>Número De Orden</th>
-              <th>Estación Sismológica</th>
-              <th>Fecha De Cierre</th>
-              <th>Hora De Cierre</th>
-              <th>Estado Sismógrafo</th>
+              <th>Número de Orden</th>
+              <th>Estación</th>
+              <th>Fecha de Cierre</th>
+              <th>Hora de Cierre</th>
+              <th>Estado</th>
+              <th>Observaciones</th>
+              <th>Motivos</th>
+              <th>Comentarios</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            {datos.map((dato, index) => (
-              <tr key={index}>
-                <td data-label="ID Sismógrafo">{dato.id}</td>
-                <td data-label="Número De Orden">{dato.orden}</td>
-                <td data-label="Estación Sismológica">{dato.estacion}</td>
-                <td data-label="Fecha De Cierre">{dato.fecha}</td>
-                <td data-label="Hora De Cierre">{dato.hora}</td>
-                <td data-label="Estado Sismógrafo">{dato.estado}</td>
+            {ordenes.map((orden, i) => (
+              <tr key={i}>
+                <td>{orden.orden.orden}</td>
+                <td>{orden.orden.estacion}</td>
+                <td>{orden.orden.fechaCierre || orden.fecha}</td>
+                <td>{orden.orden.horaCierre || orden.hora}</td>
+                <td style={{ color: 'red', fontWeight: 'bold' }}>{orden.orden.estado || 'Fuera de Servicio'}</td>
+                <td>{orden.observaciones}</td>
+                <td>
+                  <ul>
+                    {orden.motivos.map((m, j) => (
+                      <li key={j}>{m.tipo}</li>
+                    ))}
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    {orden.motivos.map((m, j) => (
+                      <li key={j}>{m.comentario}</li>
+                    ))}
+                  </ul>
+                </td>
+                <td>
+                  <button onClick={() => eliminarOrden(i)} className="boton-eliminar">
+                    Eliminar
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      <div className="siguiente-wrapper">
+        <button className="boton-volver" onClick={() => navigate('/')}>Volver al Menú</button>
+      </div>
     </div>
   );
 };
 
-export default OrdenesInspeccion;
+export default OrdenesFinalizadas;

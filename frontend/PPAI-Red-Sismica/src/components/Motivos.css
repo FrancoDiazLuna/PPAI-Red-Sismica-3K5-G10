@@ -1,0 +1,67 @@
+.motivos-container {
+  background-color: #b0cbe9;
+  min-height: 100vh;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+
+}
+
+.motivos-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #0c2a4e;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #8aa3c5;
+  border-radius: 6px;
+  resize: vertical;
+  margin-bottom: 20px;
+  background-color: #f4f8fc;
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #457ca3;
+  color: white;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #2b5876;
+  text-align: left;
+}
+
+input[type="text"] {
+  width: 95%;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  background-color: #2b5876;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1d3e54;
+}
+
+.confirm {
+  float: right;
+}

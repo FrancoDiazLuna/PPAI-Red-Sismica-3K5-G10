@@ -6,8 +6,8 @@ import axios from '../api';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [usuario, setUsuario] = useState('');
-  const [clave, setClave] = useState('');
+  const [username, setUsuario] = useState('');
+  const [password, setClave] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('/api/login', { usuario, clave });
+      const res = await axios.post('/auth/login', { username, password });
 
       if (res.data.success) {
         localStorage.setItem('logueado', 'true');

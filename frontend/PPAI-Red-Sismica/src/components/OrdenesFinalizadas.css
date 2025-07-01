@@ -1,0 +1,44 @@
+.ordenes-container {
+  background-color: #bfd7ed;
+  min-height: 100vh;
+  padding: 40px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.ordenes-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #1d3557;
+  margin-bottom: 30px;
+}
+
+.tabla-wrapper {
+  overflow-x: auto;
+  background: #457b9d;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.ordenes-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  color: #070000;
+}
+
+.ordenes-tabla thead {
+  background-color: #1d3557;
+}
+
+.ordenes-tabla th, .ordenes-tabla td {
+  padding: 12px 15px;
+  border: 1px solid #ffffff33;
+  text-align: center;
+}
+
+.ordenes-tabla tbody tr:hover {
+  background-color: #5e8fb5;
+  transition: background-color 0.3s ease;
+}

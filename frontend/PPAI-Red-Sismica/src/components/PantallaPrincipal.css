@@ -1,0 +1,69 @@
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.inicio-container {
+  background: linear-gradient(to bottom right, #a6c0dc, #bfd7ed);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.titulo h1 {
+  font-size: 42px;
+  font-weight: bold;
+  color: #1d3557;
+  margin-bottom: 60px;
+}
+
+.botones {
+  display: flex;
+  gap: 30px;
+}
+
+.botones button {
+  background-color: #1d3557;
+  color: white;
+  padding: 18px 28px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.botones button:hover {
+  background-color: #457b9d;
+  transform: scale(1.05);
+}
+
+.icono {
+  font-size: 22px;
+}

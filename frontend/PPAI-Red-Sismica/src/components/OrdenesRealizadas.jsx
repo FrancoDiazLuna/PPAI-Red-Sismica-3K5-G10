@@ -1,29 +1,35 @@
 // ✅ OrdenesRealizadas.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './OrdenesRealizadas.css';
+import axios from '../api';
 
 const OrdenesRealizadas = () => {
   const navigate = useNavigate();
+  const [datos, setDatos] = useState([]);
+  const [cargando, setCargando] = useState(true);
 
-  const datos = [
-    {
-      id: '001',
-      orden: 'ORD-1001',
-      estacion: 'Estación Norte',
-      fechaFinalizacion: '2025-06-24',
-    },
-    {
-      id: '002',
-      orden: 'ORD-1002',
-      estacion: 'Estación Sur',
-      fechaFinalizacion: '2025-06-23',
-    },
-  ];
+  useEffect(() => {
+    const obtenerOrdenes = async () => {
+      try {
+        const res = await axios.get('/api/ordenes-activas'); 
+        setDatos(res.data);
+      } catch (error) {
+        console.error("Error al obtener las órdenes activas:", error);
+        alert("No se pudieron cargar las órdenes.");
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    obtenerOrdenes();
+  }, []);
 
   const seleccionarOrden = (orden) => {
     navigate('/motivos', { state: { ordenSeleccionada: orden } });
   };
+
+  if (cargando) return <p>Cargando órdenes...</p>;
 
   return (
     <div className="ordenes-container">
@@ -46,7 +52,9 @@ const OrdenesRealizadas = () => {
                 <td>{dato.orden}</td>
                 <td>{dato.estacion}</td>
                 <td>{dato.fechaFinalizacion}</td>
-                <td><button onClick={() => seleccionarOrden(dato)}>Seleccionar</button></td>
+                <td>
+                  <button onClick={() => seleccionarOrden(dato)}>Seleccionar</button>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import axios from '../api';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,7 +10,6 @@ const Login = () => {
   const [clave, setClave] = useState('');
   const [error, setError] = useState('');
 
-  // ✅ Si ya está logueado, redirigimos automáticamente
   useEffect(() => {
     const estaLogueado = localStorage.getItem('logueado');
     if (estaLogueado === 'true') {
@@ -17,15 +17,21 @@ const Login = () => {
     }
   }, [navigate]);
 
-  const manejarLogin = (e) => {
+  const manejarLogin = async (e) => {
     e.preventDefault();
 
-    // ✅ Usuario y contraseña correctos
-    if (usuario === 'admin' && clave === '1234') {
-      localStorage.setItem('logueado', 'true'); // marcamos como logueado
-      navigate('/menu');
-    } else {
-      setError('Usuario o contraseña incorrectos');
+    try {
+      const res = await axios.post('/api/login', { usuario, clave });
+
+      if (res.data.success) {
+        localStorage.setItem('logueado', 'true');
+        navigate('/menu');
+      } else {
+        setError('Credenciales inválidas');
+      }
+    } catch (err) {
+      console.error('Error en el login:', err);
+      setError('Ocurrió un error al iniciar sesión');
     }
   };
 

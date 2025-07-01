@@ -43,13 +43,13 @@ const Login = () => {
         <input
           type="text"
           placeholder="Usuario"
-          value={usuario}
+          value={username}
           onChange={(e) => setUsuario(e.target.value)}
         />
         <input
           type="password"
           placeholder="Contraseña"
-          value={clave}
+          value={password}
           onChange={(e) => setClave(e.target.value)}
         />
         <button type="submit">Ingresar</button>

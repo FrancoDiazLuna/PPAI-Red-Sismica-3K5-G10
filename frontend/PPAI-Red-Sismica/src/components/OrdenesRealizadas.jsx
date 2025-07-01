@@ -60,6 +60,13 @@ const OrdenesRealizadas = () => {
           </tbody>
         </table>
       </div>
+
+      {/* ✅ Botón Volver al Menú */}
+      <div className="siguiente-wrapper">
+        <button className="boton-volver" onClick={() => navigate('/')}>
+          Volver al Menú
+        </button>
+      </div>
     </div>
   );
 };

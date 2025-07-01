@@ -40,18 +40,27 @@ const Login = () => {
       <form className="login-form" onSubmit={manejarLogin}>
         <h2>Iniciar Sesión</h2>
         {error && <p className="error">{error}</p>}
-        <input
-          type="text"
-          placeholder="Usuario"
-          value={username}
-          onChange={(e) => setUsuario(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setClave(e.target.value)}
-        />
+
+        <div className="input-icon">
+          <span className="icon">👤</span>
+          <input
+            type="text"
+            placeholder="Usuario"
+            value={username}
+            onChange={(e) => setUsuario(e.target.value)}
+          />
+        </div>
+
+        <div className="input-icon">
+          <span className="icon">🔒</span>
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setClave(e.target.value)}
+          />
+        </div>
+
         <button type="submit">Ingresar</button>
       </form>
     </div>

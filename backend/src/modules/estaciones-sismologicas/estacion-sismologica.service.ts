@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { EstacionSismologica } from "../entities/estacion-sismologica.entity";
-import { CustomLoggerService } from "../../../common/services/logger.service";
+import { EstacionSismologica } from "./entities/estacion-sismologica.entity";
+import { CustomLoggerService } from "../../common/services/logger.service";
 
 @Injectable()
 export class EstacionSismologicaService {
@@ -22,7 +22,7 @@ export class EstacionSismologicaService {
       });
     } catch (error: any) {
       this.logger.error(
-        `Error al obtener estación con ID ${id}: ${error?.message || 'Desconocido'}`,
+        `Error al obtener estación con ID ${id}: ${error?.message || "Desconocido"}`,
       );
       return null;
     }
@@ -35,7 +35,7 @@ export class EstacionSismologicaService {
         relations: ["sismografos"],
       });
     } catch (error: any) {
-      this.logger.error(`Error al obtener estaciones: ${error?.message || 'Desconocido'}`);
+      this.logger.error(`Error al obtener estaciones: ${error?.message || "Desconocido"}`);
       return [];
     }
   }
@@ -49,7 +49,7 @@ export class EstacionSismologicaService {
       });
     } catch (error: any) {
       this.logger.error(
-        `Error al obtener estación ${id} con sismógrafos: ${error?.message || 'Desconocido'}`,
+        `Error al obtener estación ${id} con sismógrafos: ${error?.message || "Desconocido"}`,
       );
       return null;
     }

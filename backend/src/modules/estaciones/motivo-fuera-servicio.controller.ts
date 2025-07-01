@@ -1,8 +1,8 @@
 import { Controller, Get, HttpException, HttpStatus } from "@nestjs/common";
 import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
-import { MotivoFueraServicioService } from "../services/motivo-fuera-servicio.service";
-import { ListaMotivosFueraServicioDto } from "../dto/motivo-fuera-servicio.dto";
-import { CustomLoggerService } from "../../../common/services/logger.service";
+import { MotivoFueraServicioService } from "./motivo-fuera-servicio.service";
+import { ListaMotivosFueraServicioDto } from "./dto/motivo-fuera-servicio.dto";
+import { CustomLoggerService } from "../../common/services/logger.service";
 
 @ApiTags("motivos-fuera-servicio")
 @Controller({ path: "motivos-fuera-servicio", version: "1" })
@@ -19,15 +19,15 @@ export class MotivoFueraServicioController {
   async obtenerTodos(): Promise<ListaMotivosFueraServicioDto> {
     try {
       this.logger.log("Obteniendo todos los motivos de fuera de servicio");
-      
+
       const motivos = await this.motivoFueraServicioService.obtenerTodos();
-      
+
       return {
-        motivos: motivos.map(motivo => ({
+        motivos: motivos.map((motivo) => ({
           id: motivo.id,
           descripcion: motivo.descripcion,
-          tipo: motivo.tipo
-        }))
+          tipo: motivo.tipo,
+        })),
       };
     } catch (error) {
       this.logger.error(`Error al obtener motivos: ${error.message}`);

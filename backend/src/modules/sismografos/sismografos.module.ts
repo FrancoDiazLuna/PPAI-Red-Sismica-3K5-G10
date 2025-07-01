@@ -1,12 +1,10 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Sismografo } from './entities/sismografo.entity';
-import { SismografoService } from './services/sismografo.service';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { Sismografo } from "./entities/sismografo.entity";
+import { SismografoService } from "./sismografo.service";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Sismografo])
-  ],
+  imports: [TypeOrmModule.forFeature([Sismografo])],
   providers: [SismografoService],
   exports: [SismografoService],
 })

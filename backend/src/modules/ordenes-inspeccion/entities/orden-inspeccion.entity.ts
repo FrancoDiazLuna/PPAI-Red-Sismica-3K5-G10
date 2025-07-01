@@ -7,7 +7,7 @@ import { ObservacionCierre } from "../../observaciones-cierre/entities/observaci
 export enum EstadoOrdenInspeccion {
   PENDIENTE = "pendiente",
   REALIZADA = "realizada",
-  CERRADA = "cerrada"
+  CERRADA = "cerrada",
 }
 
 @Entity()
@@ -40,7 +40,7 @@ export class OrdenInspeccion {
   @Column({ nullable: true })
   resultadoInspeccion: string;
 
-  @OneToMany(() => ObservacionCierre, observacion => observacion.ordenInspeccion)
+  @OneToMany(() => ObservacionCierre, (observacion) => observacion.ordenInspeccion)
   observacionesCierre: ObservacionCierre[];
 
   @Column({ type: "datetime", nullable: true })

@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { ResponsableInspeccion } from "../entities/responsable-inspeccion.entity";
-import { CustomLoggerService } from "../../../common/services/logger.service";
+import { ResponsableInspeccion } from "./entities/responsable-inspeccion.entity";
+import { CustomLoggerService } from "../../common/services/logger.service";
 
 @Injectable()
 export class ResponsableInspeccionService {
@@ -22,7 +22,7 @@ export class ResponsableInspeccionService {
       });
     } catch (error: any) {
       this.logger.error(
-        `Error al obtener responsable con ID ${id}: ${error?.message || 'Desconocido'}`,
+        `Error al obtener responsable con ID ${id}: ${error?.message || "Desconocido"}`,
       );
       return null;
     }
@@ -36,7 +36,7 @@ export class ResponsableInspeccionService {
       });
     } catch (error: any) {
       this.logger.error(
-        `Error al obtener responsable con usuario ${usuario}: ${error?.message || 'Desconocido'}`,
+        `Error al obtener responsable con usuario ${usuario}: ${error?.message || "Desconocido"}`,
       );
       return null;
     }
@@ -47,7 +47,7 @@ export class ResponsableInspeccionService {
       this.logger.log("Obteniendo todos los responsables de inspección");
       return await this.responsableRepository.find();
     } catch (error: any) {
-      this.logger.error(`Error al obtener responsables: ${error?.message || 'Desconocido'}`);
+      this.logger.error(`Error al obtener responsables: ${error?.message || "Desconocido"}`);
       return [];
     }
   }

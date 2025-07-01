@@ -3,8 +3,8 @@ import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import { AuthService } from "./services/auth.service";
-import { AuthController } from "./controllers/auth.controller";
+import { AuthService } from "./auth.service";
+import { AuthController } from "./auth.controller";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 import { Usuario } from "./entities/usuario.entity";
 
@@ -14,9 +14,9 @@ import { Usuario } from "./entities/usuario.entity";
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        secret:
-          configService.get<string>("JWT_SECRET") || "red-sismica-secret-key",
+      // Cambiado de async a sync ya que no hay operaciones asíncronas
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>("JWT_SECRET") || "red-sismica-secret-key",
         signOptions: { expiresIn: "12h" },
       }),
       inject: [ConfigService],

@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber, IsString, IsArray, IsOptional } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, IsArray } from "class-validator";
 
 export class IniciarCierreOrdenDto {
   @ApiProperty({ description: "ID del responsable de inspección" })

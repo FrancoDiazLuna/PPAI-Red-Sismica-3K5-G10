@@ -13,7 +13,7 @@ export class ObservacionCierre {
   @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
   fechaHora: Date;
 
-  @ManyToOne(() => OrdenInspeccion, orden => orden.observacionesCierre)
+  @ManyToOne(() => OrdenInspeccion, (orden) => orden.observacionesCierre)
   ordenInspeccion: OrdenInspeccion;
 
   @ManyToMany(() => MotivoFueraServicio)

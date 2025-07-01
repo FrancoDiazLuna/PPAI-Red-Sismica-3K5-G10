@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { ObservacionCierre } from "../entities/observacion-cierre.entity";
-import { OrdenInspeccion } from "../../ordenes-inspeccion/entities/orden-inspeccion.entity";
-import { MotivoFueraServicio } from "../../motivos-fuera-servicio/entities/motivo-fuera-servicio.entity";
-import { CustomLoggerService } from "../../../common/services/logger.service";
+import { ObservacionCierre } from "./entities/observacion-cierre.entity";
+import { OrdenInspeccion } from "../ordenes/entities/orden-inspeccion.entity";
+import { MotivoFueraServicio } from "../estaciones/entities/motivo-fuera-servicio.entity";
+import { CustomLoggerService } from "../../common/services/logger.service";
 
 @Injectable()
 export class ObservacionCierreService {
@@ -18,22 +18,20 @@ export class ObservacionCierreService {
   async crearObservacionCierre(
     texto: string,
     orden: OrdenInspeccion,
-    motivos: MotivoFueraServicio[]
+    motivos: MotivoFueraServicio[],
   ): Promise<ObservacionCierre> {
     try {
       this.logger.log(`Creando observación de cierre para orden ${orden.id}`);
-      
+
       const observacion = this.observacionCierreRepository.create({
         texto,
         ordenInspeccion: orden,
-        motivos
+        motivos,
       });
-      
+
       return await this.observacionCierreRepository.save(observacion);
     } catch (error: any) {
-      this.logger.error(
-        `Error al crear observación de cierre: ${error?.message || 'Desconocido'}`,
-      );
+      this.logger.error(`Error al crear observación de cierre: ${error?.message || "Desconocido"}`);
       throw error;
     }
   }
@@ -47,7 +45,7 @@ export class ObservacionCierreService {
       });
     } catch (error: any) {
       this.logger.error(
-        `Error al obtener observación con ID ${id}: ${error?.message || 'Desconocido'}`,
+        `Error al obtener observación con ID ${id}: ${error?.message || "Desconocido"}`,
       );
       return null;
     }
@@ -62,7 +60,7 @@ export class ObservacionCierreService {
       });
     } catch (error: any) {
       this.logger.error(
-        `Error al obtener observaciones para orden ${ordenId}: ${error?.message || 'Desconocido'}`,
+        `Error al obtener observaciones para orden ${ordenId}: ${error?.message || "Desconocido"}`,
       );
       return [];
     }

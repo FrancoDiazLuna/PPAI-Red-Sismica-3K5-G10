@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-
-import { Usuario } from "../entities/usuario.entity";
-import { LoginDto } from "../dto/login.dto";
-import { CustomLoggerService } from "../../../common/services/logger.service";
+import { Usuario } from "./entities/usuario.entity";
+import { LoginDto } from "./dto/login.dto";
+import { LoginResponseDto } from "./dto/login-response.dto";
+import { CustomLoggerService } from "../../common/services/logger.service";
 
 @Injectable()
 export class AuthService {
@@ -33,7 +33,9 @@ export class AuthService {
         return null;
       }
 
-      const { password: _, ...result } = usuario;
+      // Extraemos el password (no lo usamos) y nos quedamos con el resto de propiedades
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password: passwordOmitted, ...result } = usuario;
       return result;
     } catch (error: any) {
       this.logger.error(`Error al validar usuario: ${error?.message || "Desconocido"}`);
@@ -41,14 +43,14 @@ export class AuthService {
     }
   }
 
-  async login(loginDto: LoginDto) {
+  async login(loginDto: LoginDto): Promise<LoginResponseDto> {
     try {
       const usuario = await this.validateUser(loginDto.username, loginDto.password);
 
       if (!usuario) {
         return {
           success: false,
-          error: "Credenciales inválidas",
+          message: "Credenciales inválidas",
         };
       }
 
@@ -73,11 +75,12 @@ export class AuthService {
           rol: usuario.rol,
         },
       };
-    } catch (error: any) {
-      this.logger.error(`Error en login: ${error?.message || "Desconocido"}`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Error en la autenticación";
+      this.logger.error(`Error en login: ${errorMessage}`);
       return {
         success: false,
-        error: error?.message || "Error al iniciar sesión",
+        message: errorMessage,
       };
     }
   }

@@ -3,9 +3,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { OrdenInspeccion } from "./entities/orden-inspeccion.entity";
 import { ResponsableInspeccion } from "./entities/responsable-inspeccion.entity";
 import { ObservacionCierre } from "./entities/observacion-cierre.entity";
-import { OrdenInspeccionService } from "./services/orden-inspeccion.service";
-import { NotificacionService } from "./services/notificacion.service";
-import { OrdenInspeccionController } from "./controllers/orden-inspeccion.controller";
+import { OrdenInspeccionService } from "./orden-inspeccion.service";
+import { NotificacionService } from "./notificacion.service";
 import { EstacionesModule } from "../estaciones/estaciones.module";
 
 @Module({
@@ -13,7 +12,7 @@ import { EstacionesModule } from "../estaciones/estaciones.module";
     TypeOrmModule.forFeature([OrdenInspeccion, ResponsableInspeccion, ObservacionCierre]),
     EstacionesModule,
   ],
-  controllers: [OrdenInspeccionController],
+  controllers: [],
   providers: [OrdenInspeccionService, NotificacionService],
   exports: [OrdenInspeccionService, NotificacionService],
 })

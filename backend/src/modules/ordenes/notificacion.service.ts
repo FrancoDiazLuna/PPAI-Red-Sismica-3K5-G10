@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { OrdenInspeccion } from "../../ordenes-inspeccion/entities/orden-inspeccion.entity";
-import { ObservacionCierre } from "../../observaciones-cierre/entities/observacion-cierre.entity";
-import { CustomLoggerService } from "../../../common/services/logger.service";
+import { OrdenInspeccion } from "./entities/orden-inspeccion.entity";
+import { ObservacionCierre } from "./entities/observacion-cierre.entity";
+import { CustomLoggerService } from "../../common/services/logger.service";
 
 @Injectable()
 export class NotificacionService {
@@ -9,10 +9,11 @@ export class NotificacionService {
 
   constructor() {}
 
-  async enviarNotificacionCierreOrden(
+  // Cambiado de async a sync ya que no hay operaciones asíncronas reales
+  enviarNotificacionCierreOrden(
     orden: OrdenInspeccion,
-    observacionCierre: ObservacionCierre
-  ): Promise<void> {
+    observacionCierre: ObservacionCierre,
+  ): void {
     this.logger.log(`Enviando notificación de cierre de orden ${orden.id}`);
 
     // Simulación de envío de correo electrónico
@@ -24,13 +25,13 @@ export class NotificacionService {
 
   private enviarCorreoElectronico(
     orden: OrdenInspeccion,
-    observacionCierre: ObservacionCierre
+    observacionCierre: ObservacionCierre,
   ): void {
     this.logger.log("Enviando correo electrónico a responsables de operaciones");
 
     // En una implementación real, aquí se enviaría un correo electrónico
     // utilizando un servicio como Nodemailer o SendGrid
-    
+
     const asunto = `Sismógrafo fuera de servicio - Estación ${orden.estacionSismologica.nombre}`;
     const mensaje = `
       Se ha registrado un sismógrafo fuera de servicio:
@@ -43,7 +44,7 @@ export class NotificacionService {
       Observación: ${observacionCierre.texto}
       
       Motivos:
-      ${observacionCierre.motivos.map(m => `- ${m.descripcion}`).join("\n")}
+      ${observacionCierre.motivos.map((m) => `- ${m.descripcion}`).join("\n")}
     `;
 
     this.logger.log(`Correo simulado - Asunto: ${asunto}`);
@@ -52,7 +53,7 @@ export class NotificacionService {
 
   private publicarEnMonitoresCORS(
     orden: OrdenInspeccion,
-    observacionCierre: ObservacionCierre
+    observacionCierre: ObservacionCierre,
   ): void {
     this.logger.log("Publicando en monitores CORS");
 
@@ -66,7 +67,7 @@ export class NotificacionService {
       fecha: observacionCierre.fechaHora,
       responsable: orden.responsable.nombre,
       observacion: observacionCierre.texto,
-      motivos: observacionCierre.motivos.map(m => m.descripcion)
+      motivos: observacionCierre.motivos.map((m) => m.descripcion),
     };
 
     this.logger.debug(`Mensaje para monitores CORS: ${JSON.stringify(mensaje)}`);

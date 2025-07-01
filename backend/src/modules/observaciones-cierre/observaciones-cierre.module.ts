@@ -1,12 +1,10 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ObservacionCierre } from './entities/observacion-cierre.entity';
-import { ObservacionCierreService } from './services/observacion-cierre.service';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { ObservacionCierre } from "./entities/observacion-cierre.entity";
+import { ObservacionCierreService } from "./observacion-cierre.service";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([ObservacionCierre])
-  ],
+  imports: [TypeOrmModule.forFeature([ObservacionCierre])],
   providers: [ObservacionCierreService],
   exports: [ObservacionCierreService],
 })

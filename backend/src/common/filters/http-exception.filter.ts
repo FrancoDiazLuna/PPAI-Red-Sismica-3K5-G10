@@ -1,10 +1,4 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-  HttpStatus,
-} from "@nestjs/common";
+import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from "@nestjs/common";
 import { Request, Response } from "express";
 import { CustomLoggerService } from "../services/logger.service";
 
@@ -28,14 +22,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const errorResponse = exception.getResponse();
 
     // Crear una respuesta de error estructurada
-    const errorMessage = 
+    const errorMessage =
       typeof errorResponse === "string"
         ? errorResponse
         : typeof errorResponse === "object" && "message" in errorResponse
-        ? Array.isArray(errorResponse.message)
-          ? errorResponse.message.join(", ")
-          : String(errorResponse.message)
-        : "Error interno del servidor";
+          ? Array.isArray(errorResponse.message)
+            ? errorResponse.message.join(", ")
+            : String(errorResponse.message)
+          : "Error interno del servidor";
 
     const error = {
       statusCode: status,
@@ -52,13 +46,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
         exception.stack,
       );
     } else if (status >= HttpStatus.BAD_REQUEST) {
-      this.logger.warn(
-        `Error ${status} en ${request.method} ${request.url}: ${errorMessage}`,
-      );
+      this.logger.warn(`Error ${status} en ${request.method} ${request.url}: ${errorMessage}`);
     } else {
-      this.logger.log(
-        `Error ${status} en ${request.method} ${request.url}: ${errorMessage}`,
-      );
+      this.logger.log(`Error ${status} en ${request.method} ${request.url}: ${errorMessage}`);
     }
 
     // Enviar respuesta al cliente
@@ -85,20 +75,18 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
     // Determinar el estado HTTP y el mensaje
     const status =
-      exception instanceof HttpException
-        ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
+      exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
 
     let message = "Error interno del servidor";
-    
+
     if (exception instanceof HttpException) {
       const errorResponse = exception.getResponse();
-      message = 
+      message =
         typeof errorResponse === "string"
           ? errorResponse
           : typeof errorResponse === "object" && "message" in errorResponse
-          ? String(errorResponse.message)
-          : "Error interno del servidor";
+            ? String(errorResponse.message)
+            : "Error interno del servidor";
     } else if (exception instanceof Error) {
       message = exception.message;
     }

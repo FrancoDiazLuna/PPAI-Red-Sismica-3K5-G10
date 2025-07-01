@@ -1,10 +1,4 @@
-import {
-  Injectable,
-  LoggerService,
-  Scope,
-  Optional,
-  Inject,
-} from "@nestjs/common";
+import { Injectable, LoggerService, Scope, Optional, Inject } from "@nestjs/common";
 
 /**
  * Servicio de logger personalizado para la aplicación
@@ -89,9 +83,7 @@ export class CustomLoggerService implements LoggerService {
     const finalContext = contextOverride || this.context;
     const timestamp = new Date().toISOString();
     const formattedMessage: string =
-      typeof message === "object"
-        ? JSON.stringify(message, null, 2)
-        : String(message);
+      typeof message === "object" ? JSON.stringify(message, null, 2) : String(message);
 
     // Color según el nivel de log
     let color = "\x1b[0m"; // Reset

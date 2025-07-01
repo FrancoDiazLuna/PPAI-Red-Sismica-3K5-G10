@@ -3,10 +3,7 @@ import { AppModule } from "../app.module";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { EstacionSismologica } from "../modules/estaciones/entities/estacion.entity";
-import {
-  Sismografo,
-  EstadoSismografo,
-} from "../modules/estaciones/entities/sismografo.entity";
+import { Sismografo, EstadoSismografo } from "../modules/estaciones/entities/sismografo.entity";
 import { MotivoFueraServicio } from "../modules/estaciones/entities/motivo-fuera-servicio.entity";
 import {
   OrdenInspeccion,
@@ -28,21 +25,15 @@ async function bootstrap() {
     const estacionRepo = app.get<Repository<EstacionSismologica>>(
       getRepositoryToken(EstacionSismologica),
     );
-    const sismografoRepo = app.get<Repository<Sismografo>>(
-      getRepositoryToken(Sismografo),
-    );
+    const sismografoRepo = app.get<Repository<Sismografo>>(getRepositoryToken(Sismografo));
     const motivoRepo = app.get<Repository<MotivoFueraServicio>>(
       getRepositoryToken(MotivoFueraServicio),
     );
     const responsableRepo = app.get<Repository<ResponsableInspeccion>>(
       getRepositoryToken(ResponsableInspeccion),
     );
-    const ordenRepo = app.get<Repository<OrdenInspeccion>>(
-      getRepositoryToken(OrdenInspeccion),
-    );
-    const usuarioRepo = app.get<Repository<Usuario>>(
-      getRepositoryToken(Usuario),
-    );
+    const ordenRepo = app.get<Repository<OrdenInspeccion>>(getRepositoryToken(OrdenInspeccion));
+    const usuarioRepo = app.get<Repository<Usuario>>(getRepositoryToken(Usuario));
 
     // Limpiar datos existentes
     logger.log("Limpiando datos existentes...");
@@ -55,6 +46,7 @@ async function bootstrap() {
 
     // Crear motivos de fuera de servicio
     logger.log("Creando motivos de fuera de servicio...");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const motivos = await motivoRepo.save([
       { descripcion: "Falla de hardware", tipo: "Hardware" },
       { descripcion: "Error de calibración", tipo: "Calibración" },
@@ -136,8 +128,7 @@ async function bootstrap() {
         estacionSismologica: estaciones[0],
         sismografo: sismografos[0],
         responsable: responsables[0],
-        resultadoInspeccion:
-          "Se detectó una posible anomalía en la calibración del sismógrafo.",
+        resultadoInspeccion: "Se detectó una posible anomalía en la calibración del sismógrafo.",
       },
       {
         fechaCreacion: fechaCreacion2,
@@ -146,8 +137,7 @@ async function bootstrap() {
         estacionSismologica: estaciones[1],
         sismografo: sismografos[2],
         responsable: responsables[0],
-        resultadoInspeccion:
-          "El sismógrafo presenta desgaste en sus componentes internos.",
+        resultadoInspeccion: "El sismógrafo presenta desgaste en sus componentes internos.",
       },
       {
         fechaCreacion: fechaCreacion3,
@@ -160,7 +150,7 @@ async function bootstrap() {
 
     // Crear usuarios para autenticación
     logger.log("Creando usuarios para autenticación...");
-    
+
     // Crear usuarios con contraseñas hasheadas manualmente
     const saltRounds = 10;
     const usuarios = await Promise.all([
@@ -193,7 +183,7 @@ async function bootstrap() {
         rol: RolUsuario.SUPERVISOR,
       },
     ]);
-    
+
     // Guardar los usuarios con contraseñas ya hasheadas
     await usuarioRepo.save(usuarios);
 
@@ -208,4 +198,5 @@ async function bootstrap() {
   }
 }
 
-bootstrap();
+// Añadimos await o void para manejar la promesa correctamente
+void bootstrap();

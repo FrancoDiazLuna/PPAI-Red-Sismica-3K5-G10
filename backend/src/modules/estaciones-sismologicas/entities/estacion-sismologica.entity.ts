@@ -15,6 +15,6 @@ export class EstacionSismologica {
   @Column({ default: true })
   activa: boolean;
 
-  @OneToMany(() => Sismografo, sismografo => sismografo.estacion)
+  @OneToMany(() => Sismografo, (sismografo) => sismografo.estacion)
   sismografos: Sismografo[];
 }

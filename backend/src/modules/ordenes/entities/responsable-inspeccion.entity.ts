@@ -15,6 +15,6 @@ export class ResponsableInspeccion {
   @Column()
   email: string;
 
-  @OneToMany(() => OrdenInspeccion, orden => orden.responsable)
+  @OneToMany(() => OrdenInspeccion, (orden) => orden.responsable)
   ordenesInspeccion: OrdenInspeccion[];
 }

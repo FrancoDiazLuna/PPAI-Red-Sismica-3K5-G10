@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm";
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from "bcrypt";
 
 export enum RolUsuario {
   ADMIN = "admin",
   RESPONSABLE_INSPECCION = "responsable_inspeccion",
-  SUPERVISOR = "supervisor"
+  SUPERVISOR = "supervisor",
 }
 
 @Entity()
@@ -37,6 +37,6 @@ export class Usuario {
   }
 
   async validatePassword(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+    return await bcrypt.compare(password, this.password);
   }
 }

@@ -14,14 +14,21 @@ import { Rol } from "../modules/auth/entities/rol.entity";
 import { Empleado } from "../modules/auth/entities/empleado.entity";
 import * as bcrypt from "bcrypt";
 import { DeepPartial } from "typeorm/common/DeepPartial";
+import * as fs from "fs";
 
-// Añadir mensajes de depuración básicos
-console.log("=== INICIANDO SCRIPT DE SEED ===");
+// Función para escribir en el archivo de log
+function writeLog(message: string) {
+  const logPath = "seed-log.txt";
+  fs.appendFileSync(logPath, message + "\n");
+  console.log(message);
+}
+
+// Limpiar el archivo de log existente
+fs.writeFileSync("seed-log.txt", "=== INICIANDO SCRIPT DE SEED ===\n");
 
 async function bootstrap() {
-  console.log("Función bootstrap iniciada");
-  // Usar console.log en lugar de CustomLoggerService para depuración
-  console.log("Iniciando script de inicialización de datos...");
+  writeLog("Función bootstrap iniciada");
+  writeLog("Iniciando script de inicialización de datos...");
 
   const app = await NestFactory.createApplicationContext(AppModule);
 
@@ -41,7 +48,7 @@ async function bootstrap() {
     const estadoRepo = dataSource.getRepository(Estado);
 
     // Limpiar datos existentes
-    console.log("Limpiando datos existentes...");
+    writeLog("Limpiando datos existentes...");
     await ordenRepo.delete({});
     await responsableRepo.delete({});
     await sismografoRepo.delete({});
@@ -55,7 +62,7 @@ async function bootstrap() {
     await estadoRepo.delete({});
 
     // Crear estados para diferentes ámbitos
-    console.log("Creando estados...");
+    writeLog("Creando estados...");
     const estadosSismografo = await estadoRepo.save([
       { ambito: "SISMOGRAFO", nombreEstado: "EN_SERVICIO" },
       { ambito: "SISMOGRAFO", nombreEstado: "FUERA_DE_SERVICIO" },
@@ -69,7 +76,7 @@ async function bootstrap() {
     ]);
 
     // Crear tipos de motivos
-    console.log("Creando tipos de motivos...");
+    writeLog("Creando tipos de motivos...");
     const tiposMotivo = await motivoTipoRepo.save([
       { descripcion: "HARDWARE" },
       { descripcion: "CALIBRACION" },
@@ -78,7 +85,7 @@ async function bootstrap() {
     ]);
 
     // Crear motivos de fuera de servicio
-    console.log("Creando motivos de fuera de servicio...");
+    writeLog("Creando motivos de fuera de servicio...");
     const motivoFueraServicio1 = await motivoRepo.save({
       comentario: "Falla de hardware",
       motivoTipo: tiposMotivo[0],
@@ -108,7 +115,7 @@ async function bootstrap() {
     });
 
     // Crear estaciones sismológicas
-    console.log("Creando estaciones sismológicas...");
+    writeLog("Creando estaciones sismológicas...");
     const estacion1 = await estacionRepo.save({
       nombre: "Estación Sismológica Córdoba",
       codigoEstacion: "CB-001",
@@ -140,7 +147,7 @@ async function bootstrap() {
     } as DeepPartial<EstacionSismologica>);
 
     // Crear cambios de estado para sismógrafos
-    console.log("Creando cambios de estado para sismógrafos...");
+    writeLog("Creando cambios de estado para sismógrafos...");
     const cambioEstado1 = await cambioEstadoRepo.save({
       fechaHoraInicio: new Date(2022, 5, 15), // 15 de junio de 2022
       fechaHoraFin: undefined,
@@ -170,7 +177,7 @@ async function bootstrap() {
     });
 
     // Crear sismógrafos
-    console.log("Creando sismógrafos...");
+    writeLog("Creando sismógrafos...");
     await sismografoRepo.save({
       identificadorSismografo: "SIS-001",
       nroSerie: "ST-2000",
@@ -203,10 +210,10 @@ async function bootstrap() {
       cambioEstado: cambioEstado4,
     } as DeepPartial<Sismografo>);
 
-    console.log("Sismógrafos creados exitosamente");
+    writeLog("Sismógrafos creados exitosamente");
 
     // Crear responsables de inspección
-    console.log("Creando responsables de inspección...");
+    writeLog("Creando responsables de inspección...");
     await responsableRepo.save({
       nombre: "Juan Pérez",
       usuario: "jperez",
@@ -226,7 +233,7 @@ async function bootstrap() {
     });
 
     // Crear órdenes de inspección
-    console.log("Creando órdenes de inspección...");
+    writeLog("Creando órdenes de inspección...");
     const fechaInicio1 = new Date();
     fechaInicio1.setDate(fechaInicio1.getDate() - 10);
 
@@ -244,7 +251,7 @@ async function bootstrap() {
 
     // Ya no necesitamos crear cambios de estado para órdenes de inspección
     // porque ahora la entidad OrdenDeInspeccion tiene una relación directa con Estado
-    console.log("Configurando estados para órdenes de inspección...");
+    writeLog("Configurando estados para órdenes de inspección...");
 
     // Crear órdenes de inspección
     await ordenRepo.save({
@@ -277,10 +284,10 @@ async function bootstrap() {
       estacionSismologica: estacion1, // Córdoba
     } as DeepPartial<OrdenDeInspeccion>);
 
-    console.log("Órdenes de inspección creadas exitosamente");
+    writeLog("Órdenes de inspección creadas exitosamente");
 
     // Crear roles
-    console.log("Creando roles...");
+    writeLog("Creando roles...");
     const rolAdmin = await rolRepo.save({
       nombre: "ADMIN",
       descripcion: "Administrador del sistema",
@@ -292,7 +299,7 @@ async function bootstrap() {
     });
 
     // Crear usuarios
-    console.log("Creando usuarios...");
+    writeLog("Creando usuarios...");
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash("admin123", salt);
 
@@ -315,7 +322,7 @@ async function bootstrap() {
     });
 
     // Crear empleados
-    console.log("Creando empleados...");
+    writeLog("Creando empleados...");
     await empleadoRepo.save({
       legajo: "E001",
       nombre: "Juan",
@@ -330,14 +337,15 @@ async function bootstrap() {
       email: "mlopez@redsismica.com",
     });
 
-    console.log("Datos inicializados correctamente");
+    writeLog("Datos inicializados correctamente");
   } catch (error) {
-    console.error(`Error al inicializar datos: ${error.message}`);
+    writeLog(`Error al inicializar datos: ${error.message}`);
     if (error.stack) {
-      console.error(error.stack);
+      writeLog(error.stack);
     }
   } finally {
     await app.close();
+    writeLog("Script finalizado");
   }
 }
 

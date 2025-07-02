@@ -1,11 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+} from "typeorm";
 import * as bcrypt from "bcrypt";
 
-export enum RolUsuario {
-  ADMIN = "admin",
-  RESPONSABLE_INSPECCION = "responsable_inspeccion",
-  SUPERVISOR = "supervisor",
-}
+import { Empleado } from "./empleado.entity";
+import { Sesion } from "./sesion.entity";
 
 @Entity()
 export class Usuario {
@@ -13,30 +18,24 @@ export class Usuario {
   id: number;
 
   @Column({ unique: true })
-  username: string;
+  nombreUsuario: string;
 
   @Column()
-  password: string;
+  contraseña: string;
 
-  @Column()
-  nombre: string;
+  @OneToOne(() => Empleado, (empleado) => empleado.usuario)
+  @JoinColumn()
+  empleado: Empleado;
 
-  @Column()
-  apellido: string;
-
-  @Column({
-    type: "varchar",
-    enum: RolUsuario,
-    default: RolUsuario.RESPONSABLE_INSPECCION,
-  })
-  rol: RolUsuario;
+  @OneToMany(() => Sesion, (sesion) => sesion.usuario)
+  sesiones: Sesion[];
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
+    this.contraseña = await bcrypt.hash(this.contraseña, 10);
   }
 
   async validatePassword(password: string): Promise<boolean> {
-    return await bcrypt.compare(password, this.password);
+    return await bcrypt.compare(password, this.contraseña);
   }
 }

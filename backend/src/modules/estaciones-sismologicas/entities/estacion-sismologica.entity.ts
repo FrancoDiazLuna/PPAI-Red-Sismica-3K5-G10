@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { Sismografo } from "../../sismografos/entities/sismografo.entity";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export class EstacionSismologica {
@@ -10,11 +9,20 @@ export class EstacionSismologica {
   nombre: string;
 
   @Column()
-  ubicacion: string;
+  codigoEstacion: string;
 
-  @Column({ default: true })
-  activa: boolean;
+  @Column()
+  latitud: string;
 
-  @OneToMany(() => Sismografo, (sismografo) => sismografo.estacion)
-  sismografos: Sismografo[];
+  @Column()
+  longitud: string;
+
+  @Column()
+  documentoCertificacionAdq: string;
+
+  @Column()
+  nroCertificacionAdquision: string;
+
+  @Column({ type: "datetime" })
+  fechaSolicitudCertificacion: Date;
 }

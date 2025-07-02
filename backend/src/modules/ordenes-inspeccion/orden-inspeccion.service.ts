@@ -1,11 +1,12 @@
 import { Injectable, Inject } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { Repository, EntityManager } from "typeorm";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { OrdenInspeccion, EstadoOrdenInspeccion } from "./entities/orden-inspeccion.entity";
-import { ObservacionCierre } from "../observaciones-cierre/entities/observacion-cierre.entity";
+
+import { OrdenDeInspeccion } from "./entities/orden-inspeccion.entity";
 import { MotivoFueraServicio } from "../motivos-fuera-servicio/entities/motivo-fuera-servicio.entity";
-import { Sismografo, EstadoSismografo } from "../sismografos/entities/sismografo.entity";
+import { Sismografo } from "../sismografos/entities/sismografo.entity";
+import { Estado } from "../estados/entities/estado.entity";
 import { CustomLoggerService } from "../../common/services/logger.service";
 import { NotificacionService } from "../notificaciones/notificacion.service";
 
@@ -14,38 +15,37 @@ export class OrdenInspeccionService {
   private readonly logger = new CustomLoggerService("OrdenInspeccionService");
 
   constructor(
-    @InjectRepository(OrdenInspeccion)
-    private ordenInspeccionRepository: Repository<OrdenInspeccion>,
-    @InjectRepository(ObservacionCierre)
-    private observacionCierreRepository: Repository<ObservacionCierre>,
+    @InjectRepository(OrdenDeInspeccion)
+    private ordenInspeccionRepository: Repository<OrdenDeInspeccion>,
     @Inject(getRepositoryToken(MotivoFueraServicio))
     private motivoFueraServicioRepository: Repository<MotivoFueraServicio>,
     @Inject(getRepositoryToken(Sismografo))
     private sismografoRepository: Repository<Sismografo>,
     private notificacionService: NotificacionService,
+    private entityManager: EntityManager,
   ) {}
 
-  async buscarOrdenesRealizadasPorResponsable(responsableId: number): Promise<OrdenInspeccion[]> {
+  async buscarOrdenesRealizadasPorResponsable(responsableId: number): Promise<OrdenDeInspeccion[]> {
     this.logger.log(`Buscando órdenes realizadas para el responsable ${responsableId}`);
 
     return await this.ordenInspeccionRepository.find({
       where: {
         responsable: { id: responsableId },
-        estado: EstadoOrdenInspeccion.REALIZADA,
+        estado: { nombreEstado: "REALIZADA", ambito: "ORDEN_INSPECCION" },
       },
-      relations: ["estacionSismologica", "sismografo", "responsable"],
+      relations: ["estacionSismologica", "responsable", "estado"],
       order: {
-        fechaFinalizacion: "DESC",
+        fechaHoraFinalizacion: "DESC",
       },
     });
   }
 
-  async obtenerOrdenPorId(id: number): Promise<OrdenInspeccion | null> {
+  async obtenerOrdenPorId(id: number): Promise<OrdenDeInspeccion | null> {
     this.logger.log(`Obteniendo orden de inspección con ID ${id}`);
 
     return await this.ordenInspeccionRepository.findOne({
       where: { id },
-      relations: ["estacionSismologica", "sismografo", "responsable"],
+      relations: ["estacionSismologica", "responsable", "estado"],
     });
   }
 
@@ -53,13 +53,13 @@ export class OrdenInspeccionService {
     ordenId: number,
     observacion: string,
     motivosIds: number[],
-  ): Promise<OrdenInspeccion> {
+  ): Promise<OrdenDeInspeccion> {
     this.logger.log(`Cerrando orden de inspección ${ordenId}`);
 
     // Obtener la orden de inspección
     const orden = await this.ordenInspeccionRepository.findOne({
       where: { id: ordenId },
-      relations: ["estacionSismologica", "sismografo", "responsable"],
+      relations: ["estacionSismologica", "responsable", "estado"],
     });
 
     if (!orden) {
@@ -67,7 +67,7 @@ export class OrdenInspeccionService {
     }
 
     // Verificar que la orden esté en estado REALIZADA
-    if (orden.estado !== EstadoOrdenInspeccion.REALIZADA) {
+    if (orden.estado.nombreEstado !== "REALIZADA") {
       throw new Error("La orden de inspección no está en estado REALIZADA");
     }
 
@@ -81,30 +81,31 @@ export class OrdenInspeccionService {
     }
 
     // Crear la observación de cierre
-    const observacionCierre = this.observacionCierreRepository.create({
-      texto: observacion,
-      ordenInspeccion: orden,
-      motivos: motivos,
+    orden.observacionCierre = observacion;
+
+    await this.entityManager.save(orden);
+
+    // Ya no actualizamos directamente el sismógrafo aquí
+    // Necesitaríamos buscar el sismógrafo asociado a la estación primero
+
+    // Buscar el estado CERRADA para órdenes de inspección
+    const estadoCerrada = await this.entityManager.findOne(Estado, {
+      where: { nombreEstado: "CERRADA", ambito: "ORDEN_INSPECCION" },
     });
 
-    await this.observacionCierreRepository.save(observacionCierre);
-
-    // Actualizar el estado del sismógrafo
-    const sismografo = orden.sismografo;
-    sismografo.estado = EstadoSismografo.FUERA_SERVICIO;
-    sismografo.fechaUltimoCambioEstado = new Date();
-    sismografo.motivosFueraServicio = motivos;
-
-    await this.sismografoRepository.save(sismografo);
+    if (!estadoCerrada) {
+      throw new Error("Estado CERRADA no encontrado para órdenes de inspección");
+    }
 
     // Actualizar la orden de inspección
-    orden.estado = EstadoOrdenInspeccion.CERRADA;
-    orden.fechaCierre = new Date();
+    orden.estado = estadoCerrada;
+    orden.fechaHoraCierre = new Date();
+    orden.observacionCierre = observacion;
 
     await this.ordenInspeccionRepository.save(orden);
 
     // Enviar notificación (método sincrónico, no necesita await)
-    this.notificacionService.enviarNotificacionCierreOrden(orden, observacionCierre);
+    this.notificacionService.enviarNotificacionCierreOrden(orden);
 
     return orden;
   }

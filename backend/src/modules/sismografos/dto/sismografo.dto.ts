@@ -1,8 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsString, IsEnum, IsDate, IsOptional, IsArray } from "class-validator";
-import { EstadoSismografo } from "../entities/sismografo.entity";
+import { IsNumber, IsString, IsDate, IsOptional, IsArray } from "class-validator";
 import { Type } from "class-transformer";
 import { MotivoFueraServicioDto } from "../../motivos-fuera-servicio/dto/motivo-fuera-servicio.dto";
+import { EstadoSismografo } from "../../estaciones/entities/sismografo.entity";
 
 export class SismografoDto {
   @ApiProperty({ description: "ID del sismógrafo" })
@@ -14,8 +14,8 @@ export class SismografoDto {
   identificador: string;
 
   @ApiProperty({ description: "Estado del sismógrafo", enum: EstadoSismografo })
-  @IsEnum(EstadoSismografo)
-  estado: EstadoSismografo;
+  @IsString()
+  estado: string;
 
   @ApiProperty({ description: "Fecha del último cambio de estado", required: false })
   @IsDate()

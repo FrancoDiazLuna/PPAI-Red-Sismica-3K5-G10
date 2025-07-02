@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsString, IsDate, IsEnum, IsOptional } from "class-validator";
-import { EstadoOrdenInspeccion } from "../entities/orden-inspeccion.entity";
+import { IsNumber, IsString, IsDate, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+
+import { Estado } from "../../estados/entities/estado.entity";
 
 export class OrdenInspeccionDto {
   @ApiProperty({ description: "ID de la orden de inspección" })
@@ -19,9 +20,8 @@ export class OrdenInspeccionDto {
   @Type(() => Date)
   fechaFinalizacion?: Date;
 
-  @ApiProperty({ description: "Estado de la orden", enum: EstadoOrdenInspeccion })
-  @IsEnum(EstadoOrdenInspeccion)
-  estado: EstadoOrdenInspeccion;
+  @ApiProperty({ description: "Estado de la orden" })
+  estado: Estado;
 
   @ApiProperty({ description: "ID de la estación sismológica" })
   @IsNumber()

@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { OrdenInspeccion } from "../../ordenes-inspeccion/entities/orden-inspeccion.entity";
+import { OrdenDeInspeccion } from "../../ordenes-inspeccion/entities/orden-inspeccion.entity";
 
 @Entity()
 export class ResponsableInspeccion {
@@ -15,6 +15,6 @@ export class ResponsableInspeccion {
   @Column()
   email: string;
 
-  @OneToMany(() => OrdenInspeccion, (orden) => orden.responsable)
-  ordenesInspeccion: OrdenInspeccion[];
+  @OneToMany(() => OrdenDeInspeccion, (orden) => orden.responsable)
+  ordenesInspeccion: OrdenDeInspeccion[];
 }

@@ -82,9 +82,7 @@ async function bootstrap() {
 
     // Mostrar URL de Swagger después de iniciar el servidor
     if (environment !== "production") {
-      logger.log(
-        `Swagger documentation available at ${appUrl}/${apiPrefix}/docs`,
-      );
+      logger.log(`Swagger documentation available at ${appUrl}/${apiPrefix}/docs`);
     }
 
     return app;

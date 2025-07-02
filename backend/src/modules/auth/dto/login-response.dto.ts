@@ -17,6 +17,14 @@ class UsuarioDto {
   rol: string;
 }
 
+class SesionDto {
+  @ApiProperty({ description: "ID de la sesión" })
+  id: number;
+
+  @ApiProperty({ description: "Fecha y hora de inicio de la sesión" })
+  fechaHoraInicio: Date;
+}
+
 export class LoginResponseDto {
   @ApiProperty({ description: "Indica si la operación fue exitosa", example: true })
   success: boolean;
@@ -26,6 +34,9 @@ export class LoginResponseDto {
 
   @ApiProperty({ description: "Información del usuario", type: UsuarioDto, required: false })
   usuario?: UsuarioDto;
+
+  @ApiProperty({ description: "Información de la sesión", type: SesionDto, required: false })
+  sesion?: SesionDto;
 
   @ApiProperty({
     description: "Mensaje de error en caso de fallo",

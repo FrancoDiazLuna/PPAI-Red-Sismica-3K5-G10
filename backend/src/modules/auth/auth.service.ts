@@ -2,7 +2,9 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+
 import { Usuario } from "./entities/usuario.entity";
+import { Sesion } from "./entities/sesion.entity";
 import { LoginDto } from "./dto/login.dto";
 import { LoginResponseDto } from "./dto/login-response.dto";
 import { CustomLoggerService } from "../../common/services/logger.service";
@@ -14,12 +16,17 @@ export class AuthService {
   constructor(
     @InjectRepository(Usuario)
     private usuarioRepository: Repository<Usuario>,
+    @InjectRepository(Sesion)
+    private sesionRepository: Repository<Sesion>,
     private jwtService: JwtService,
   ) {}
 
   async validateUser(username: string, password: string): Promise<any> {
     try {
-      const usuario = await this.usuarioRepository.findOne({ where: { username } });
+      const usuario = await this.usuarioRepository.findOne({
+        where: { nombreUsuario: username },
+        relations: ["empleado", "empleado.rol"],
+      });
 
       if (!usuario) {
         this.logger.warn(`Usuario no encontrado: ${username}`);
@@ -33,9 +40,9 @@ export class AuthService {
         return null;
       }
 
-      // Extraemos el password (no lo usamos) y nos quedamos con el resto de propiedades
+      // Extraemos la contraseña (no la usamos) y nos quedamos con el resto de propiedades
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password: passwordOmitted, ...result } = usuario;
+      const { contraseña, ...result } = usuario;
       return result;
     } catch (error: any) {
       this.logger.error(`Error al validar usuario: ${error?.message || "Desconocido"}`);
@@ -54,25 +61,37 @@ export class AuthService {
         };
       }
 
+      // Crear una nueva sesión
+      const nuevaSesion = this.sesionRepository.create({
+        fechaHoraInicio: new Date(),
+        usuario: usuario,
+      });
+
+      const sesionGuardada = await this.sesionRepository.save(nuevaSesion);
+
       const payload = {
-        username: usuario.username,
+        nombreUsuario: usuario.nombreUsuario,
         sub: usuario.id,
-        rol: usuario.rol,
-        nombre: usuario.nombre,
-        apellido: usuario.apellido,
+        empleadoId: usuario.empleado?.id,
+        rolId: usuario.empleado?.rol?.id,
+        rolNombre: usuario.empleado?.rol?.nombre,
       };
 
-      this.logger.log(`Usuario autenticado: ${usuario.username}`);
+      this.logger.log(`Usuario autenticado: ${usuario.nombreUsuario}`);
 
       return {
         success: true,
         access_token: this.jwtService.sign(payload),
         usuario: {
           id: usuario.id,
-          username: usuario.username,
-          nombre: usuario.nombre,
-          apellido: usuario.apellido,
-          rol: usuario.rol,
+          username: usuario.nombreUsuario,
+          nombre: usuario.empleado?.nombre,
+          apellido: usuario.empleado?.apellido,
+          rol: usuario.empleado?.rol?.nombre,
+        },
+        sesion: {
+          id: sesionGuardada.id,
+          fechaHoraInicio: sesionGuardada.fechaHoraInicio,
         },
       };
     } catch (error: unknown) {

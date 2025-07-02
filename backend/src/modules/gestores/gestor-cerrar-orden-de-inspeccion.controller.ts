@@ -9,6 +9,7 @@ import {
   HttpStatus,
 } from "@nestjs/common";
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from "@nestjs/swagger";
+
 import { GestorCerrarOrdenDeInspeccionService } from "./gestor-cerrar-orden-de-inspeccion.service";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 import { CustomLoggerService } from "../../common/services/logger.service";
@@ -44,13 +45,13 @@ export class GestorCerrarOrdenDeInspeccionController {
    * El sistema busca todas las órdenes en estado REALIZADA asociadas al responsable
    * y las devuelve para que el RI pueda seleccionar una.
    */
-  @Get("iniciar/:responsableId")
+  @Get("tomarOpcCerrarOrdenInspeccion/:sesionId")
   @ApiOperation({ summary: "Iniciar el proceso de cierre de órdenes para un responsable" })
   @ApiResponse({ status: 200, description: "Proceso iniciado con éxito" })
-  async iniciarCierreOrden(@Param("responsableId") responsableId: number) {
+  async tomarOpcCerrarOrdenInspeccion(@Param("sesionId") sesionId: number) {
     try {
-      this.logger.log(`Iniciando proceso de cierre para el responsable ${responsableId}`);
-      return await this.gestorService.iniciarCierreOrden(responsableId);
+      this.logger.log(`Iniciando proceso de cierre para el responsable ${sesionId}`);
+      return await this.gestorService.tomarOpcCerrarOrdenInspeccion(sesionId);
     } catch (error: unknown) {
       const errorMessage = getErrorMessage(error);
       this.logger.error(`Error al iniciar proceso de cierre: ${errorMessage}`);
@@ -65,16 +66,30 @@ export class GestorCerrarOrdenDeInspeccionController {
    * El sistema devuelve los detalles de la orden seleccionada y la lista de posibles
    * motivos para marcar el sismógrafo como fuera de servicio.
    */
-  @Get("detalle-orden/:ordenId")
-  @ApiOperation({ summary: "Obtener detalle de una orden para su cierre" })
+  @Post("tomarOrdenInspeccion")
+  @ApiOperation({ summary: "Tomar orden de inspección para su cierre" })
   @ApiResponse({ status: 200, description: "Detalle de la orden y motivos disponibles" })
-  async obtenerDetalleOrden(@Param("ordenId") ordenId: number) {
+  async tomarOrdenInspeccion(@Body() ordenId: number) {
     try {
-      this.logger.log(`Obteniendo detalle para la orden ${ordenId}`);
-      return await this.gestorService.obtenerDetalleOrden(ordenId);
+      this.logger.log(`Obteniendo la orden ${ordenId} seleccionada`);
+      return await this.gestorService.tomarOrdenInspeccion(ordenId);
     } catch (error: unknown) {
       const errorMessage = getErrorMessage(error);
-      this.logger.error(`Error al obtener detalle de orden: ${errorMessage}`);
+      this.logger.error(`Error al obtener la orden ${ordenId}: ${errorMessage}`);
+      throw new HttpException(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get("tomarObservacionCierreOrdenInspeccion")
+  @ApiOperation({ summary: "Tomar observación de cierre de orden de inspección" })
+  @ApiResponse({ status: 200, description: "Observación de cierre de orden de inspección" })
+  async tomarObservacionCierreOrdenInspeccion(@Body() observacion: string) {
+    try {
+      this.logger.log("Buscando motivos para cerrar orden de inspección");
+      return await this.gestorService.tomarObservacionCierreOrdenInspeccion(observacion);
+    } catch (error: unknown) {
+      const errorMessage = getErrorMessage(error);
+      this.logger.error(`Error al buscar motivos: ${errorMessage}`);
       throw new HttpException(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }

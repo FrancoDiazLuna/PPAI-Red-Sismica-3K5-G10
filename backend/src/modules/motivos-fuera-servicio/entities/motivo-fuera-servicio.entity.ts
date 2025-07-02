@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { MotivoTipo } from "./motivo-tipo.entity";
 
 @Entity()
 export class MotivoFueraServicio {
@@ -6,8 +7,8 @@ export class MotivoFueraServicio {
   id: number;
 
   @Column()
-  descripcion: string;
+  comentario: string;
 
-  @Column()
-  tipo: string;
+  @ManyToOne(() => MotivoTipo)
+  motivoTipo: MotivoTipo;
 }

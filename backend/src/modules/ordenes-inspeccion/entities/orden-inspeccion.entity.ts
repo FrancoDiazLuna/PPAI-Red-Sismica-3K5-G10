@@ -1,48 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
-import { EstacionSismologica } from "../../estaciones-sismologicas/entities/estacion-sismologica.entity";
-import { Sismografo } from "../../sismografos/entities/sismografo.entity";
-import { ResponsableInspeccion } from "../../responsables-inspeccion/entities/responsable-inspeccion.entity";
-import { ObservacionCierre } from "../../observaciones-cierre/entities/observacion-cierre.entity";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 
-export enum EstadoOrdenInspeccion {
-  PENDIENTE = "pendiente",
-  REALIZADA = "realizada",
-  CERRADA = "cerrada",
-}
+import { EstacionSismologica } from "../../estaciones-sismologicas/entities/estacion-sismologica.entity";
+import { Estado } from "../../estados/entities/estado.entity";
+import { ResponsableInspeccion } from "../../responsables-inspeccion/entities/responsable-inspeccion.entity";
 
 @Entity()
-export class OrdenInspeccion {
+export class OrdenDeInspeccion {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  nroOrden: string;
+
   @Column({ type: "datetime" })
-  fechaCreacion: Date;
+  fechaHoraInicio: Date;
 
   @Column({ type: "datetime", nullable: true })
-  fechaFinalizacion: Date;
+  fechaHoraFinalizacion: Date;
 
-  @Column({
-    type: "varchar",
-    enum: EstadoOrdenInspeccion,
-    default: EstadoOrdenInspeccion.PENDIENTE,
-  })
-  estado: EstadoOrdenInspeccion;
+  @Column({ type: "datetime", nullable: true })
+  fechaHoraCierre: Date;
+
+  @Column({ nullable: true })
+  observacionCierre: string;
+
+  @ManyToOne(() => Estado)
+  estado: Estado;
 
   @ManyToOne(() => EstacionSismologica)
   estacionSismologica: EstacionSismologica;
 
-  @ManyToOne(() => Sismografo)
-  sismografo: Sismografo;
-
-  @ManyToOne(() => ResponsableInspeccion)
+  @ManyToOne(() => ResponsableInspeccion, (responsable) => responsable.ordenesInspeccion)
   responsable: ResponsableInspeccion;
-
-  @Column({ nullable: true })
-  resultadoInspeccion: string;
-
-  @OneToMany(() => ObservacionCierre, (observacion) => observacion.ordenInspeccion)
-  observacionesCierre: ObservacionCierre[];
-
-  @Column({ type: "datetime", nullable: true })
-  fechaCierre: Date;
 }

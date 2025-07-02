@@ -1,4 +1,3 @@
-// Login.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -6,8 +5,8 @@ import axios from '../api';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [username, setUsuario] = useState('');
-  const [password, setClave] = useState('');
+  const [usuario, setUsuario] = useState('');
+  const [contraseña, setClave] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -21,10 +20,24 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('/auth/login', { username, password });
+      const res = await axios.post('/auth/login', {
+        username: usuario,
+        password: contraseña,
+      });
 
       if (res.data.success) {
+        const { access_token, usuario, sesion } = res.data;
+
+        // ✅ Guardamos los datos importantes en localStorage
         localStorage.setItem('logueado', 'true');
+        localStorage.setItem('token', access_token);
+        localStorage.setItem('usuarioId', usuario.id);
+        localStorage.setItem('username', usuario.username);
+        localStorage.setItem('nombreCompleto', `${usuario.nombre} ${usuario.apellido}`);
+        localStorage.setItem('rol', usuario.rol);
+        localStorage.setItem('sesionId', sesion.id);
+        localStorage.setItem('fechaHoraInicio', sesion.fechaHoraInicio);
+
         navigate('/menu');
       } else {
         setError('Credenciales inválidas');
@@ -46,7 +59,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Usuario"
-            value={username}
+            value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
           />
         </div>
@@ -56,7 +69,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Contraseña"
-            value={password}
+            value={contraseña}
             onChange={(e) => setClave(e.target.value)}
           />
         </div>

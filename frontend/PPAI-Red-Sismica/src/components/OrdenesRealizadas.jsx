@@ -8,11 +8,12 @@ const OrdenesRealizadas = () => {
   const navigate = useNavigate();
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const sesionId = localStorage.getItem('sesionId');
 
   useEffect(() => {
-    const obtenerOrdenes = async () => {
+    const tomarOpCerrarordenDendeInspeccion = async () => {
       try {
-        const res = await axios.get('/api/ordenes-activas'); 
+        const res = await axios.get(`/gestor-cerrar-orden-de-inspeccioniniciar/tomarOpcCerrarOrdenInspeccion/${sesionId}`); 
         setDatos(res.data);
       } catch (error) {
         console.error("Error al obtener las órdenes activas:", error);
@@ -22,10 +23,10 @@ const OrdenesRealizadas = () => {
       }
     };
 
-    obtenerOrdenes();
+   tomarOpCerrarordenDendeInspeccion();
   }, []);
 
-  const seleccionarOrden = (orden) => {
+  const tomarOrdenInspeccion = (orden) => {
     navigate('/motivos', { state: { ordenSeleccionada: orden } });
   };
 
@@ -53,7 +54,7 @@ const OrdenesRealizadas = () => {
                 <td>{dato.estacion}</td>
                 <td>{dato.fechaFinalizacion}</td>
                 <td>
-                  <button onClick={() => seleccionarOrden(dato)}>Seleccionar</button>
+                  <button onClick={() => tomarOrdenInspeccion(dato)}>Seleccionar</button>
                 </td>
               </tr>
             ))}

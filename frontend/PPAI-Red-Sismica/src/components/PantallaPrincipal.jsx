@@ -23,7 +23,7 @@ const PantallaPrincipal = () => {
         </button>
         <button onClick={() => navigate('/cerrar')}>
           <FaLock className="icono" />
-          Cerrar Orden
+          Cerrar Orden inspeccion
         </button>
           <button onClick={() => {
               localStorage.removeItem('logueado');
